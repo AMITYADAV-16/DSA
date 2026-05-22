@@ -1,0 +1,36 @@
+Date - 05/23/2026
+Problem - best time to buy and sell stock
+
+so Brute Force approach for this problem is by using nested for loop
+public int maxProfitBruteForce(int[] prices) {
+    int maxProfit = 0;
+    int n = prices.length;
+    
+    // Outer loop loops through the buying days
+    for (int i = 0; i < n; i++) {
+        // Inner loop loops through the future selling days
+        for (int j = i + 1; j < n; j++) {
+            int profit = prices[j] - prices[i];
+            if (profit > maxProfit) {
+                maxProfit = profit;
+            }
+        }
+    }
+    return maxProfit;
+}
+
+So in this we substract the each value of j with i and store it in profit variable 
+and compare it with maxProfit if it is greater than we assigned it to the maxProfit 
+but why we do this . Because the problem asks the maximum profit so we find that window and returns only the maximum.
+
+
+Optimized- 
+Pattern - Sliding Window
+we created three variable 
+buy = nums[0];
+sell = nums[0];
+maxProfit =0;
+and similarly itrated the array and checked if buy > nums[i] than buy becoms nums[i] 
+else sell = nums[i] - buy;
+and maxProfit = Math.max(maxProfit,sell);
+and thats it now return the maxProfit
